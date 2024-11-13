@@ -1,36 +1,36 @@
-class  DataUser{
-  final List<User> data;
-  DataUser({
-    required this.data,
-  });
-  factory DataUser.fromJson(Map<String,dynamic> json){
+class DataUser {
+  final List<User> users;
+
+  DataUser({required this.users});
+
+  factory DataUser.fromJson(Map<String, dynamic> json) {
     return DataUser(
-      data: List<User>.from(json['data'].map((user) => User.fromJson(user))),
+      users: (json['data'] as List).map((user) => User.fromJson(user)).toList(),
     );
   }
 }
 
 class User {
   final int id;
+  final String email;
   final String firstName;
   final String lastName;
-  final String email;
   final String avatar;
 
   User({
     required this.id,
+    required this.email,
     required this.firstName,
     required this.lastName,
-    required this.email,
     required this.avatar,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       id: json['id'],
+      email: json['email'],
       firstName: json['first_name'],
       lastName: json['last_name'],
-      email: json['email'],
       avatar: json['avatar'],
     );
   }
